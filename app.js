@@ -9,8 +9,7 @@ import fileUpload from "express-fileupload";
 import payment from "./routes/paymentRoute.js";
 import dotenv from "dotenv";
 import cors from "cors";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
+import * as url from "url";
 import path from "path";
 
 var app = express();
@@ -33,7 +32,7 @@ app.use("/api/v1", payment);
  */
 dotenv.config();
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const __dirname = url.fileURLToPath(new URL("", import.meta.url));
 
 app.use(express.static(path.join(__dirname, "./client/build")));
 
