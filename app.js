@@ -37,10 +37,12 @@ const __dirname = url.fileURLToPath(new URL("./client", import.meta.url));
 
 console.log(__dirname);
 
-app.use(express.static(path.join(__dirname, "/build")));
+app.use(express.static(path.join(__dirname, "/client")));
+
+console.log(path.join(__dirname, "/build/index.html"));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "/index.html"));
+  res.sendFile(path.join(__dirname, "/build/index.html"));
 });
 
 // Middleware for error.
