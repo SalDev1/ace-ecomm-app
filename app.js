@@ -33,16 +33,19 @@ app.use("/api/v1", payment);
  */
 dotenv.config();
 
-const __dirname = url.fileURLToPath(new URL("./client", import.meta.url));
-
+const __dirname = url.fileURLToPath(import.meta.url);
 console.log(__dirname);
 
 app.use(express.static(path.join(__dirname, "/client")));
 
-console.log(path.join(__dirname, "/build/index.html"));
+// console.log(path.join(__dirname, "/client/build/index.html"));
+
+const index = path.join(__dirname, "/build/index.html");
+console.log(index);
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/build/index.html"));
+  const index = path.join(__dirname, "/build/index.html");
+  res.sendFile(index);
 });
 
 // Middleware for error.
