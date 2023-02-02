@@ -11,6 +11,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import * as url from "url";
 import path from "path";
+import { readdirSync } from "fs";
 
 var app = express();
 
@@ -32,12 +33,12 @@ app.use("/api/v1", payment);
  */
 dotenv.config();
 
-const __dirname = url.fileURLToPath(new URL("", import.meta.url));
+const __dirname = url.fileURLToPath(new URL("./client", import.meta.url));
 
-app.use(express.static(path.join(__dirname, "./client/build")));
+app.use(express.static(path.join(__dirname, "/build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./client/build/index.html"));
+  res.sendFile(path.resolve(__dirname, "/build/index.html"));
 });
 
 // Middleware for error.
@@ -45,6 +46,10 @@ app.use(errorMiddleware);
 
 app.get("/", (req, res) => {
   res.json("Welcome to the API");
+});
+
+readdirSync(new URL("./client", import.meta.url)).forEach((dirContent) => {
+  console.log(dirContent);
 });
 
 export default app;
