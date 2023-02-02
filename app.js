@@ -11,7 +11,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import * as url from "url";
 import path from "path";
-import { readdirSync } from "fs";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
 var app = express();
 
@@ -33,21 +34,15 @@ app.use("/api/v1", payment);
  */
 dotenv.config();
 
-const __dirname = url.fileURLToPath(import.meta.url);
-console.log(__dirname);
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-app.use(express.static(path.join(__dirname, "/client")));
+app.use(express.static(path.join(__dirname, "./client/build")));
 
-// console.log(path.join(__dirname, "/client/build/index.html"));
-
-const index = path.join(__dirname, "/build/index.html");
-console.log(index);
+// console.log(path.resolve(__dirname, "./client/build/index.html"));
 
 app.get("*", (req, res) => {
-  const index = path.join(__dirname, "/build/index.html");
-  res.sendFile(index);
+  res.sendFile(path.resolve(__dirname, "./client/build/index.html"));
 });
-
 // Middleware for error.
 app.use(errorMiddleware);
 
