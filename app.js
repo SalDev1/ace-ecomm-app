@@ -35,10 +35,12 @@ dotenv.config();
 
 const __dirname = url.fileURLToPath(new URL("./client", import.meta.url));
 
+console.log(__dirname);
+
 app.use(express.static(path.join(__dirname, "/build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "/build/index.html"));
+  res.sendFile(path.resolve(__dirname, "/index.html"));
 });
 
 // Middleware for error.
@@ -46,10 +48,6 @@ app.use(errorMiddleware);
 
 app.get("/", (req, res) => {
   res.json("Welcome to the API");
-});
-
-readdirSync(new URL("./client", import.meta.url)).forEach((dirContent) => {
-  console.log(dirContent);
 });
 
 export default app;
