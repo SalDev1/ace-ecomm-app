@@ -35,6 +35,7 @@ app.use("/api/v1", payment);
 dotenv.config();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+console.log(__dirname);
 
 app.use(express.static(path.join(__dirname, "./client/build")));
 

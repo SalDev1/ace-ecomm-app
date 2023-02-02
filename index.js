@@ -28,7 +28,7 @@ mongoose.connection.on("connected", () => {
 });
 
 const server = app.listen(process.env.PORT, () => {
-  console.log(`Server is working is on http://localhost:${process.env.PORT}`);
+  console.log(`Server is working is on https://localhost:${process.env.PORT}`);
 });
 
 // Unhanlded Promise Rejection.
