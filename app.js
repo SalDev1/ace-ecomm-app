@@ -38,12 +38,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use(express.static(path.join(__dirname, "./client/build")));
 
 app.get("*", (req, res) => {
-  try {
-    res.sendFile(path.resolve(__dirname, "./client/build/index.html"));
-    res.json("Got the frontend");
-  } catch (err) {
-    console.log(err.message);
-  }
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 // Middleware for error.
