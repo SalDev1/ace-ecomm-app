@@ -1,0 +1,32 @@
+*{
+  margin : 0;
+  scroll-behavior: smooth;
+}
+
+/*
+    How TO - Hide Arrows From Input Number
+*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.flex-wrapper {
+  display: flex;
+  min-height: 100vw;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.greenColor {
+  color : green !important;
+}
+.redColor {
+  color : red !important;
+}
