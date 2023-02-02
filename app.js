@@ -1,18 +1,15 @@
-import express from "express";
-import products from "./routes/productRoute.js";
-import errorMiddleware from "./middleware/error.js";
-import user from "./routes/userRoute.js";
-import cookieParser from "cookie-parser";
-import order from "./routes/orderRoute.js";
-import bodyParser from "body-parser";
-import fileUpload from "express-fileupload";
-import payment from "./routes/paymentRoute.js";
-import dotenv from "dotenv";
-import cors from "cors";
-import * as url from "url";
-import path from "path";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
+const express = require("express");
+const products = require("./routes/productRoute.js");
+const errorMiddleware = require("./middleware/error.js");
+const user = require("./routes/userRoute.js");
+const cookieParser = require("cookie-parser");
+const order = require("./routes/orderRoute.js");
+const bodyParser = require("body-parser");
+const fileUpload = require("express-fileupload");
+const payment = require("./routes/paymentRoute.js");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const path = require("path");
 
 var app = express();
 
@@ -34,15 +31,12 @@ app.use("/api/v1", payment);
  */
 dotenv.config();
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-console.log(__dirname);
-
 app.use(express.static(path.join(__dirname, "./client/build")));
 
-// console.log(path.resolve(__dirname, "./client/build/index.html"));
+console.log(path.join(__dirname, "./client/build/index.html"));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 // Middleware for error.
 app.use(errorMiddleware);
@@ -51,4 +45,4 @@ app.get("/", (req, res) => {
   res.json("Welcome to the API");
 });
 
-export default app;
+module.exports = app;

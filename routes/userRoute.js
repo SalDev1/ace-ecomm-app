@@ -1,5 +1,5 @@
-import express, { Router } from "express";
-import {
+const express = require("express");
+const {
   deleteUser,
   forgotPassword,
   getAllUsers,
@@ -12,8 +12,8 @@ import {
   updatePassword,
   updateUserProfile,
   updateUserRole,
-} from "../controllers/userController.js";
-import { isAuthenicatorUser, authorizeRoles } from "../middleware/auth.js";
+} = require("../controllers/userController.js");
+const { isAuthenicatorUser, authorizeRoles } = require("../middleware/auth.js");
 
 const router = express.Router();
 
@@ -35,4 +35,4 @@ router
   .put(isAuthenicatorUser, authorizeRoles("admin"), updateUserRole)
   .delete(isAuthenicatorUser, authorizeRoles("admin"), deleteUser);
 
-export default router;
+module.exports = router;

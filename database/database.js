@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-import app from "../app.js";
+const mongoose = require("mongoose");
 
 const connectDatabase = () => {
   mongoose
@@ -16,4 +15,4 @@ const connectDatabase = () => {
     });
 };
 
-export default connectDatabase;
+module.exports = connectDatabase;

@@ -2,11 +2,12 @@
   "name": "server",
   "version": "1.0.0",
   "description": "This is a full stack ecommerce-app.",
-  "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev" : "nodemon index.js",
+    "dev" : "concurrently \"npm start\"\"npm run client",
     "start": "node index.js",
+    "server" : "nodemon index.js",
+    "client" : "npm start --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Salman Uddin",

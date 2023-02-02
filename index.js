@@ -1,10 +1,10 @@
-import dotenv from "dotenv";
-import express from "express";
-import productRoutes from "./routes/productRoute.js";
-import app from "./app.js";
-import mongoose from "mongoose";
-import connectDatabase from "./database/database.js";
-import cloudinary from "cloudinary";
+const dotenv = require("dotenv");
+const express = require("express");
+const productRoutes = require("./routes/productRoute.js");
+const app = require("./app.js");
+const mongoose = require("mongoose");
+const connectDatabase = require("./database/database.js");
+const cloudinary = require("cloudinary");
 
 // Handling uncaught expection.
 // Eg:- console.log(youtube)
@@ -28,7 +28,7 @@ mongoose.connection.on("connected", () => {
 });
 
 const server = app.listen(process.env.PORT, () => {
-  console.log(`Server is working is on https://localhost:${process.env.PORT}`);
+  console.log(`Server is working is on http://localhost:${process.env.PORT}`);
 });
 
 // Unhanlded Promise Rejection.

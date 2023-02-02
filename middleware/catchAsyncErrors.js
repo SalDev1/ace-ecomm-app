@@ -5,6 +5,6 @@
 
    So due to this ,  we are creating the middleware for this.
 */
-export default (theFunc) => (req, res, next) => {
+module.exports = (theFunc) => (req, res, next) => {
   Promise.resolve(theFunc(req, res, next)).catch(next);
 };

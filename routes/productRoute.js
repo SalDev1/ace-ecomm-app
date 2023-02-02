@@ -1,5 +1,5 @@
-import express, { Router } from "express";
-import {
+const express = require("express");
+const {
   getAllProducts,
   createProduct,
   updateProduct,
@@ -9,8 +9,9 @@ import {
   getProductReviews,
   deleteReview,
   getAdminProducts,
-} from "../controllers/productController.js";
-import { isAuthenicatorUser, authorizeRoles } from "../middleware/auth.js";
+} = require("../controllers/productController.js");
+
+const { isAuthenicatorUser, authorizeRoles } = require("../middleware/auth.js");
 
 const router = express.Router();
 
@@ -36,4 +37,4 @@ router
   .get(getProductReviews)
   .delete(isAuthenicatorUser, deleteReview);
 
-export default router;
+module.exports = router;

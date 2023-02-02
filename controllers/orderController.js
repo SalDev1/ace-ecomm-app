@@ -1,10 +1,10 @@
-import orderModel from "../models/orderModel.js";
-import ErrorHandler from "../utils/errorHandler.js";
-import catchAsyncErrors from "../middleware/catchAsyncErrors.js";
-import productModel from "../models/productModel.js";
+const orderModel = require("../models/orderModel.js");
+const ErrorHandler = require("../utils/errorHandler.js");
+const catchAsyncErrors = require("../middleware/catchAsyncErrors.js");
+const productModel = require("../models/productModel.js");
 
 // Create new order.
-export const newOrder = catchAsyncErrors(async (req, res, next) => {
+exports.newOrder = catchAsyncErrors(async (req, res, next) => {
   const {
     shippingInfo,
     orderItems,
@@ -34,7 +34,7 @@ export const newOrder = catchAsyncErrors(async (req, res, next) => {
 });
 
 // get single order.
-export const getSingleOrder = catchAsyncErrors(async (req, res, next) => {
+exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
   const order = await orderModel
     .findById(req.params.id)
     .populate("user", "name email");
@@ -50,7 +50,7 @@ export const getSingleOrder = catchAsyncErrors(async (req, res, next) => {
 });
 
 // get logged in user orders.
-export const myOrders = catchAsyncErrors(async (req, res, next) => {
+exports.myOrders = catchAsyncErrors(async (req, res, next) => {
   const orders = await orderModel.find({ user: req.user._id });
 
   res.status(200).json({
@@ -60,7 +60,7 @@ export const myOrders = catchAsyncErrors(async (req, res, next) => {
 });
 
 // get all orders ==> admin
-export const getAllOrders = catchAsyncErrors(async (req, res, next) => {
+exports.getAllOrders = catchAsyncErrors(async (req, res, next) => {
   const orders = await orderModel.find();
 
   let totalAmount = 0;
@@ -77,7 +77,7 @@ export const getAllOrders = catchAsyncErrors(async (req, res, next) => {
 });
 
 // update order status ==> admin
-export const updateOrder = catchAsyncErrors(async (req, res, next) => {
+exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
   const order = await orderModel.findById(req.params.id);
 
   if (order.orderStatus === "Delivered") {
@@ -115,7 +115,7 @@ async function updateStock(id, quantity) {
 }
 
 // Delete orders ==> admin
-export const deleteOrder = catchAsyncErrors(async (req, res, next) => {
+exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
   const order = await orderModel.findById(req.params.id);
 
   if (!order) {
